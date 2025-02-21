@@ -55,7 +55,7 @@ prov2 <- read_sf(paste0("WFS:", wfs),
 
 #aarhus <- read_sf("https://api.dataforsyningen.dk/steder?hovedtype=Bebyggelse&undertype=by&primærtnavn=Aarhus&format=geojson")
 #st_write(aarhus, "data/DanishCities2024.geojson")
-towns <- read_sf("data/DanishCities2024.geojson")
+towns <- read_sf("../data/DanishCities2024.geojson")
 head(towns)
 mapview(towns)
 

@@ -15,7 +15,7 @@ oc_config()
 ### ------------- GET DATA 
 
 # Ulrik's data
-sr <- read_csv("raw_data/BBR_AarhusAll.csv")
+sr <- read_csv("../raw_data/BBR_AarhusAll.csv")
 
 # spatialize and get decades
 sr <- sr %>% 
@@ -73,19 +73,19 @@ sr_oc_addresses <- sr_oc_add %>% unnest(oc_result)
 ### ------------- SAVE RESULTS
 
 # save full output
-saveRDS(sr_oc_addresses, "output_data/SR_oc_addresses.rds") # won't save as geojson
+saveRDS(sr_oc_addresses, "../output_data/SR_oc_addresses.rds") # won't save as geojson
 
 # save spatial output
 sr_oc_addresses %>% 
   select(id_lokalId:oc_formatted, oc_category, oc_type) %>%  # only select columns save
-  st_write("output_data/SR_oc_addresses.geojson")
+  st_write("../output_data/SR_oc_addresses.geojson")
 
 # save addresses in CSV
 sr_oc_addresses %>% 
   select(id_lokalId:oc_formatted, oc_category, oc_type) %>% 
   st_drop_geometry() %>% 
-  write_csv("output_data/SR_oc_addresses.csv")
+  write_csv("../output_data/SR_oc_addresses.csv")
 
 ### -------------- Test saved results
-sr <- readRDS("output_data/SR_oc_addresses.rds")
+sr <- readRDS("../output_data/SR_oc_addresses.rds")
 sr # crs = 4326

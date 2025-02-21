@@ -7,21 +7,21 @@ library(sf)
 library(mapview)
 
 # 
-BDG <- read_rds("output_data/BDG_long.rds")
-BDGw <- read_rds("output_data/BDG_wide1987.rds")
+BDG <- read_rds("../output_data/BDG_long.rds")
+BDGw <- read_rds("../output_data/BDG_wide1987.rds")
 
-SR <- st_read("output_data/SR.geojson")
+SR <- st_read("../output_data/SR.geojson")
 SR <- SR %>%
   mutate(decade = case_when(
     decade == '1930s' ~ '1180-1939',
     TRUE ~ decade  # Keep the original value for other cases
   )) 
 
-KOB <- read_rds("output_data/KOB.rds") 
+KOB <- read_rds("../output_data/KOB.rds") 
 
 # groundtruthed FAIMS_shelters (209): missing Tranebjerg!
-GC23 <- read_sf("output_data/GC_2023.geojson") 
-GC24 <- read_sf("output_data/GC_20241012.geojson")
+GC23 <- read_sf("../output_data/GC_2023.geojson") 
+GC24 <- read_sf("../output_data/GC_20241012.geojson")
 mapview(GC23)+mapview(GC24)
 
 

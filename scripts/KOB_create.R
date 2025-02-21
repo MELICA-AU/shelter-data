@@ -63,7 +63,7 @@ mapview(KOB, zcol = "decade", cex = "Capacity")
 
 ### ------------- SAVE RESULT
 
-saveRDS(KOB, "output_data/KOB.rds") # sf in 4326 projection
+saveRDS(KOB, "../output_data/KOB.rds") # sf in 4326 projection
 
 
 ############################################

@@ -17,7 +17,7 @@ library(mapview)
 
 ### ------------- LOAD BBR data from Ulrik
 
-SR <- read_csv("raw_data/BBR_AarhusAll.csv")
+SR <- read_csv("../raw_data/BBR_AarhusAll.csv")
 
 # kommunekode 751 indicates Aarhus kommune
 SR %>% 
@@ -88,7 +88,7 @@ st_write(SR, "output_data/SR.geojson", append = FALSE)
 
 ### ------------- SR 1989 - MAPVIEW FOR SANITY CHECK
 # quick map
-SR <- st_read("output_data/SR.geojson")
+SR <- st_read("../output_data/SR.geojson")
 SR <- SR %>%
   mutate(decade = case_when(
     decade == '1930s' ~ '1180-1939',

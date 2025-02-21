@@ -7,8 +7,8 @@ library(mapview)
 
 ### ------------- LOAD LONG DATA FROM RDS OR CSV local
 
-BDG <- readRDS("output_data/BDG_long.rds")
-#BDG <- read_csv("output_data/BDGlong.csv") # for non-spatial work
+BDG <- readRDS("../output_data/BDG_long.rds")
+#BDG <- read_csv("../output_data/BDGlong.csv") # for non-spatial work
 
 glimpse(BDG)
 
@@ -159,14 +159,14 @@ mapview(BDG_lines, zcol = "year") + mapview(BDG, zcol = "Location_startdate")
 
 
 # 92 shelters removed to Brabrand!
-read_csv("output_data/BDG_long.csv") %>% 
+read_csv("../output_data/BDG_long.csv") %>% 
   filter(!is.na(longitude) | !is.na(latitude) ) %>% 
   filter(latitude == 56.150046 & longitude ==10.107009) %>% 
   distinct(BDnr)
 
 
 ## Filter away the Brabrand location from the csv dataset
-BDG_noBrabrand_sf <- read_csv("output_data/BDG_long.csv")%>% 
+BDG_noBrabrand_sf <- read_csv("../output_data/BDG_long.csv")%>% 
   filter(!is.na(longitude) | !is.na(latitude) ) %>% 
   filter(latitude != 56.150046 & longitude !=10.107009) %>% 
   st_as_sf(coords = c("longitude", "latitude"), crs = 4326) 

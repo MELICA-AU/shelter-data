@@ -33,7 +33,7 @@ BDGw <- BDGw %>%
 ### -------------- LOAD WIDE DATA (SHELTERS-ANDREAS) FROM RDS 
 
 # Load saved rds based on wide data representing 1987 situation 
-BDGw <- readRDS("output_data/BDG_wide1987.rds")
+BDGw <- readRDS("../output_data/BDG_wide1987.rds")
 glimpse(BDGw)
 
 # 10 closely undefined shelters - NEED REVISIT
@@ -83,9 +83,9 @@ BDG %>%
          latitude = st_coordinates(.)[,2]) %>%
   rename(id = ID) %>%
   st_drop_geometry() %>%
-  write_csv("output_data/BDG_long.csv")
+  write_csv("../output_data/BDG_long.csv")
 
-saveRDS(BDG, "output_data/BDG_long.rds")
+saveRDS(BDG, "../output_data/BDG_long.rds")
 
 
 
@@ -93,7 +93,7 @@ saveRDS(BDG, "output_data/BDG_long.rds")
 
 ### ------------- LOAD LONG DATA FROM RDS OR CSV local
 
-BDG <- readRDS("output_data/BDG_long.rds")
+BDG <- readRDS("../output_data/BDG_long.rds")
 
 glimpse(BDG)
 
