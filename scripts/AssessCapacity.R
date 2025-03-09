@@ -21,10 +21,12 @@ KOB <- read_rds("../output_data/KOB.rds")
 
 # groundtruthed FAIMS_shelters (209): missing Tranebjerg!
 GC23 <- read_sf("../output_data/GC_2023.geojson") 
-GC24 <- read_sf("../output_data/GC_20241012.geojson")
+GC24 <- read_sf("../output_data/GC_20241018.geojson")
 mapview(GC23)+mapview(GC24)
 
+GC24 %>% arrange(id) %>% pull(id)
 
+sort(GC24$identifier)
 ### -----------------------  CAPACITIES
 
 # Summaries of capacities
@@ -32,6 +34,8 @@ BDGw %>%
   group_by(Final_type) %>% 
   summarize(number = n(),
             total_capacity = sum(Final_Pub_Size))
+BDGw %>% 
+  tally(Final_Pub_Size)
 
 BDG %>%
   select(BDnr, Type, Capacity, decade) %>% 
@@ -57,18 +61,19 @@ BDG %>%
 SR %>% 
   group_by(decade) %>% 
   summarize(number = n(),
-            total_capacity = sum(places))
+            total_capacity = sum(places)) 
+  
 
 SR %>% 
-  filter(year <1989) %>% 
-  tally(places)
+  filter(year <1990) %>% 
+  summarize(n = n(), total = sum(places))
 
 KOB %>% 
   group_by(decade) %>% 
   summarize(number = n(),
             total_capacity = sum(Capacity))
 
-2# Total capacity of everything on the ground by 1987 was 294,799 places (assuming accurate numbers; 
+# Total capacity of everything on the ground by 1987 was 294,799 places (assuming accurate numbers; 
 # SR only has BBR numbers)
 sum(BDGw$Final_Pub_Size, na.rm = T) + 
   sum(SR$places, na.rm = T) + 
